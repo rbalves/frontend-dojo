@@ -1,7 +1,19 @@
 // Desafio 2: Palindrome
 
 function isPalindrome(word) {
-  // Write your code here
+  const solution = [...word]
+    .reverse()
+    .join("")
+    .toLowerCase()
+    .replace(/ /g, "")
+    .replace(/[^\w ]/g, "");
+
+  const wordNormalized = word
+    .toLowerCase()
+    .replace(/ /g, "")
+    .replace(/[^\w ]/g, "");
+
+  return solution === wordNormalized
 }
 
 console.log(isPalindrome("civic")); // true

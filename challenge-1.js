@@ -1,7 +1,23 @@
 // Desafio 1: FizzBuzz
 
 function fizzBuzz(number) {
-  // Write your code here
+  const list = Array.from({length: number}, (_, i) => i + 1)
+
+  return list.map(number => {
+    if (number % 3 === 0 && number % 5 === 0) {
+      return "FizzBuzz"
+    }
+    
+    if (number % 3 === 0) {
+      return "Fizz"
+    }
+
+    if (number % 5 === 0) {
+      return "Buzz"
+    }
+
+    return String(number)
+  })
 }
 
 console.log(fizzBuzz(15));

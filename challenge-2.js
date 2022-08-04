@@ -1,18 +1,50 @@
 // Desafio 2: Palindrome
 
-function normalizeString(word) {
-  return word
-    .toLowerCase()
-    .replace(/ /g, "")
-    .replace(/[^\w ]/g, "");
+class WordBuilder {
+  constructor(word) {
+    this._word = word;
+  }
+
+  noSpace() {
+    this._word = this._word.replace(/ /g, "");
+    return this;
+  }
+
+  onlyLetters() {
+    this._word = this._word.replace(/[^\w ]/g, "");
+    return this;
+  }
+
+  toLowerCase() {
+    this._word = this._word.toLowerCase();
+    return this;
+  }
+
+  revert() {
+    this._word = [...this._word].reverse().join("");
+    return this;
+  }
+
+  build() {
+    return this._word;
+  }
 }
 
 function isPalindrome(word) {
-  const solution = normalizeString([...word].reverse().join(""));
+  const reversedWord = new WordBuilder(word)
+    .revert()
+    .toLowerCase()
+    .noSpace()
+    .onlyLetters()
+    .build();
 
-  const originalWord = normalizeString(word);
+  const originalWord = new WordBuilder(word)
+    .toLowerCase()
+    .noSpace()
+    .onlyLetters()
+    .build();
 
-  return solution === originalWord;
+  return reversedWord === originalWord;
 }
 
 console.log(isPalindrome("civic")); // true

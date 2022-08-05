@@ -31,18 +31,13 @@ class WordBuilder {
 }
 
 function isPalindrome(word) {
-  const reversedWord = new WordBuilder(word)
-    .revert()
-    .toLowerCase()
-    .noSpace()
-    .onlyLetters()
-    .build();
-
   const originalWord = new WordBuilder(word)
     .toLowerCase()
     .noSpace()
     .onlyLetters()
     .build();
+
+  const reversedWord = new WordBuilder(originalWord).revert().build();
 
   return reversedWord === originalWord;
 }
